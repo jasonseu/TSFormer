@@ -7,9 +7,9 @@ This is a official PyTorch implementation of Two-Stream Transformer for Multi-La
 pre-trained weights can bee found in [google drive](https://drive.google.com/drive/folders/1XOiLTpWHYRGR8itp4aqQZsbXWHV_TT0j?usp=sharing). Download them and put them in the `experiment` folder, then one can use follow command to reproduce results reported in paper.
 
 ```bash
-python evaluate.py --exp experiments/TSFormer_mscoco/exp1
-python evaluate.py --exp experiments/TSFormer_nuswide/exp1
-python evaluate.py --exp experiments/TSFormer_voc2007/exp1
+python evaluate.py --exp experiments/TSFormer_mscoco/exp1    # Microsoft COCO
+python evaluate.py --exp experiments/TSFormer_nuswide/exp1   # NUS-WIDE
+python evaluate.py --exp experiments/TSFormer_voc2007/exp1   # Pascal VOC 2007
 ```
 
 ### Main Results
