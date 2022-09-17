@@ -4,7 +4,7 @@
 This is a official PyTorch implementation of Two-Stream Transformer for Multi-Label Image Classification.
 ![alt tsformer](src/tsformer.png)
 
-pre-trained weights can bee found in [google drive](https://drive.google.com/drive/folders/1XOiLTpWHYRGR8itp4aqQZsbXWHV_TT0j?usp=sharing). Download them and put them in the `experiments` folder, then one can use follow command to reproduce results reported in paper.
+Pre-trained weights can be found in [google drive](https://drive.google.com/drive/folders/1XOiLTpWHYRGR8itp4aqQZsbXWHV_TT0j?usp=sharing). Download them and put them in the `experiments` folder, then one can use follow command to reproduce results reported in paper.
 
 ```bash
 python evaluate.py --exp experiments/TSFormer_mscoco/exp1    # Microsoft COCO
