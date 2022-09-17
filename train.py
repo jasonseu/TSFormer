@@ -6,14 +6,12 @@
 # Copyright © 2021 - CPSS Group
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 import os
-# os.environ['CUDA_VISIBLE_DEVICES'] = '2'
 import sys
 import time
 import logging
 import traceback
 
 import torch
-from torch import nn
 from torch.utils.data import DataLoader
 from torch.utils.tensorboard import SummaryWriter
 
@@ -52,30 +50,8 @@ class Trainer(object):
         logger.info('total parameters: {}'.format(sum(p.numel() for p in self.model.parameters())))
 
     def run(self):
-        s_epoch = 0
-        if self.cfg.restore_exp is not None:
-            latest_model_path = os.path.join(self.cfg.restore_exp, 'checkpoints/latest_model.pth')
-            ckpt = torch.load(latest_model_path)
-            s_epoch = ckpt['epoch']
-            self.global_step = ckpt['global_step']
-            self.model.load_state_dict(ckpt['model_state_dict'])
-            self.optimizer.load_state_dict(ckpt['optim_state_dict'])
-            self.lr_scheduler.load_state_dict(ckpt['scher_state_dict'])
-            self.early_stopping.load_state_dict(ckpt['estop_state_dict'])
-            logger.info('restore model from the epoch {}!'.format(s_epoch))
-        
-        for epoch in range(s_epoch, self.cfg.max_epoch):
+        for epoch in range(self.cfg.max_epoch):
             self.train(epoch)
-            save_dict = {
-                'epoch': epoch + 1,
-                'global_step': self.global_step,
-                'model_state_dict': self.model.state_dict(),
-                'optim_state_dict': self.optimizer.state_dict(),
-                'scher_state_dict': self.lr_scheduler.state_dict(),
-                'estop_state_dict': self.early_stopping.state_dict()
-            }
-            torch.save(save_dict, self.cfg.ckpt_latest_path)
-
             mAP = self.validation(epoch)
             self.lr_scheduler.step(mAP)
             is_save, is_terminate = self.early_stopping(mAP)
@@ -92,10 +68,9 @@ class Trainer(object):
             batch_begin = time.time()
             imgs = batch['img'].cuda()
             targets = batch['target'].cuda()
-            # probs = self.model(imgs)
-            # loss = nn.BCELoss()(probs, targets)
             logits = self.model(imgs)
             loss = self.criterion(logits, targets)
+            
             self.optimizer.zero_grad()
             loss.backward()
             self.optimizer.step()
@@ -133,9 +108,6 @@ class Trainer(object):
 if __name__ == "__main__":
     args = get_args()
     cfg = prepare_env(args, sys.argv)
-    if cfg.data == 'voc2012':
-        cfg.test_path = 'data/voc2007/test.txt'
-        cfg.ignore_path = 'data/voc2007/ignore.npy'
     setup_seed(cfg.seed)
     
     try:
