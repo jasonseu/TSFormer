@@ -4,6 +4,31 @@
 This is an official PyTorch implementation of Two-Stream Transformer for Multi-Label Image Classification.
 ![alt tsformer](src/tsformer.png)
 
+### Data Preparation
+1. Download dataset and organize them as follow:
+```
+|datasets
+|---- MSCOCO
+|---- NUS-WIDE
+|---- VOC2007
+```
+2. Preprocess using following commands:
+```bash
+python scripts/mscoco.py
+python scripts/nuswide.py
+python scripts/voc2007.py
+python embedding.py --data [mscoco, nuswide, voc2007]
+```
+
+### Training
+One can use following commands to train model.
+```bash
+python train.py --model TSFormer --data mscoco --batch_size 16 --optimizer AdamW --lr 0.00001 --mode part --start_depth 9
+python train.py --model TSFormer --data nuswide --batch_size 16 --optimizer AdamW --lr 0.00001 --mode part --start_depth 1
+python train.py --model TSFormer --data voc2007 --batch_size 16 --optimizer AdamW --lr 0.00001 --mode part --start_depth 4
+```
+
+### Evaluation
 Pre-trained weights can be found in [google drive](https://drive.google.com/drive/folders/1XOiLTpWHYRGR8itp4aqQZsbXWHV_TT0j?usp=sharing). Download and put them in the `experiments` folder, then one can use follow commands to reproduce results reported in paper.
 
 ```bash
