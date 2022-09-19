@@ -23,9 +23,9 @@ python embedding.py --data [mscoco, nuswide, voc2007]
 ### Training
 One can use following commands to train model.
 ```bash
-python train.py --model TSFormer --data mscoco --batch_size 16 --optimizer AdamW --lr 0.00001 --mode part --start_depth 9
-python train.py --model TSFormer --data nuswide --batch_size 16 --optimizer AdamW --lr 0.00001 --mode part --start_depth 1
-python train.py --model TSFormer --data voc2007 --batch_size 16 --optimizer AdamW --lr 0.00001 --mode part --start_depth 4
+python train.py --data mscoco --batch_size 16 --optimizer AdamW --lr 0.00001 --mode part --start_depth 9
+python train.py --data nuswide --batch_size 16 --optimizer AdamW --lr 0.00001 --mode part --start_depth 1
+python train.py --data voc2007 --batch_size 16 --optimizer AdamW --lr 0.00001 --mode part --start_depth 4
 ```
 
 ### Evaluation
