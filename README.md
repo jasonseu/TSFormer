@@ -20,6 +20,12 @@ python scripts/voc2007.py
 python embedding.py --data [mscoco, nuswide, voc2007]
 ```
 
+### Requirements
+```
+torch >= 1.9.0
+torchvision >= 0.10.0
+```
+
 ### Training
 One can use following commands to train model.
 ```bash
