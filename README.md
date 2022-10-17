@@ -1,7 +1,7 @@
 ## Two-Stream Transformer for Multi-Label Image Classification
 
 ### Introduction
-This is an official PyTorch implementation of Two-Stream Transformer for Multi-Label Image Classification [paper](https://dl.acm.org/doi/abs/10.1145/3503161.3548343).
+This is an official PyTorch implementation of Two-Stream Transformer for Multi-Label Image Classification [[paper]](https://dl.acm.org/doi/abs/10.1145/3503161.3548343).
 ![alt tsformer](src/tsformer.png)
 
 ### Data Preparation
