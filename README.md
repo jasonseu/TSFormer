@@ -49,3 +49,14 @@ python evaluate.py --exp experiments/TSFormer_voc2007/exp1   # Pascal VOC 2007
 | VOC 2007    | 97.0 |
 | MS-COCO     | 88.9 |
 | NUS-WIDE    | 69.3 |
+
+### Citation
+```
+@inproceedings{zhu2022two,
+  title={Two-stream transformer for multi-label image classification},
+  author={Zhu, Xuelin and Cao, Jiuxin and Ge, Jiawei and Liu, Weijia and Liu, Bo},
+  booktitle={Proceedings of the 30th ACM International Conference on Multimedia},
+  pages={3598--3607},
+  year={2022}
+}
+```
